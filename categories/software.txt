@@ -25,3 +25,5 @@ vim
 >Ask a new user to quit it in order to generate a random string.
 VLC
 >I love traffic cones.
+Emacs
+>Plug in your foot pedals
