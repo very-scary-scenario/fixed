@@ -55,8 +55,9 @@ function chooseCategory(event) {
     productElement.innerText = product.name;
     categoryElement.innerText = product.category;
     versionElement.innerText = product.version;
-    if (product.comment) {
+    if (product.comment !== undefined) {
       console.log(product.comment);
+      meSpeak.speak(product.comment);
     }
   });
 }
@@ -66,4 +67,5 @@ function beginGatheringPlayers() {
   lobbyElement.style.removeProperty('display');
 }
 
+meSpeak.loadVoice('en/en');
 beginGatheringPlayers();
