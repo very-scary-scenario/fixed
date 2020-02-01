@@ -46,7 +46,11 @@ body {
 }
 
 p {
-  margin: .2em 0;
+  margin: .4em 0;
+}
+
+ul {
+  margin-left: 1em;
 }
 
 input[type="text"], input[type="submit"], a[href].button {
