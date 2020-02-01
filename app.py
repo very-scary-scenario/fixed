@@ -1,5 +1,7 @@
+import os
 from random import choice
 from string import ascii_lowercase
+
 from flask import (
     Flask,
     jsonify,
@@ -12,7 +14,7 @@ from flask import (
 from game import CATEGORIES, VERSIONS, get_categories_shortlist
 
 app = Flask(__name__)
-app.secret_key = 'XXX'  # XXX
+app.secret_key = str(os.urandom(32))
 
 
 def validate_lobby_code(code):
