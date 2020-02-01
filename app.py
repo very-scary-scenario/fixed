@@ -1,6 +1,7 @@
 import os
 from random import choice, shuffle
 from string import ascii_lowercase
+from uuid import uuid4
 
 from flask import (
     Flask,
@@ -62,6 +63,7 @@ def dispatch():
             session['name'] = (
                 name.replace('\n', '').replace('\r', '').replace('#', '')
             )
+            session['player_uuid'] = str(uuid4())
             return redirect('/play')
 
     elif mode == 'start':
@@ -94,8 +96,9 @@ def log_entry():
         return redirect('/')
 
     with open(filename_for_code(session.get('playing_lobby')), 'a') as lf:
-        lf.write('{}#{}'.format(
+        lf.write('{}#{}#{}'.format(
             session.get('name'),
+            session.get('player_uuid'),
             entry.replace('\n', '').replace('\r', ''),
         ))
         lf.write('\n')
@@ -136,8 +139,8 @@ def _entries():
     with open(filename_for_code(
         validate_lobby_code(session.get('hosting_lobby'))
     )) as ef:
-        entries = [{'name': name, 'entry': entry} for name, entry in (
-            e.strip().split('#', 1)
+        entries = [{'name': name, 'entry': entry} for name, uuid, entry in (
+            e.strip().split('#', 2)
             for e in ef.readlines() if e.strip()
         )]
         shuffle(entries)
