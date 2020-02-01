@@ -1,10 +1,14 @@
+var countdownInterval;
 var lobbyElement = document.getElementById('lobby');
 var categoriesElement = document.getElementById('categories');
 var categoriesListElement = document.getElementById('category-choices');
 var promptElement = document.getElementById('prompt');
+var promptOpenElement = document.getElementById('prompt-open');
 var productElement = document.getElementById('product');
 var categoryElement = document.getElementById('category');
 var versionElement = document.getElementById('version');
+var timerElement = document.getElementById('timer');
+var changesElement = document.getElementById('changes');
 
 function hideEverything() {
   lobbyElement.style.setProperty('display', 'none');
@@ -48,9 +52,13 @@ function everyoneIsHere() {
 function chooseCategory(event) {
   event.preventDefault();
   hideEverything();
+  changesElement.style.setProperty('display', 'none');
+  changesElement.innerHTML = '';
+  promptOpenElement.style.setProperty('display', 'none');
 
   api('_prompt', {category: event.currentTarget.innerText}, function() {
     promptElement.style.removeProperty('display');
+    promptOpenElement.style.removeProperty('display');
     product = JSON.parse(this.responseText);
     productElement.innerText = product.name;
     categoryElement.innerText = product.category;
@@ -59,6 +67,29 @@ function chooseCategory(event) {
       console.log(product.comment);
       meSpeak.speak(product.comment);
     }
+
+    var countdown = 60;
+
+    function decrement() {
+      if (countdown === 0) {
+        promptOpenElement.style.setProperty('display', 'none');
+        clearInterval(countdownInterval);
+        changesElement.style.removeProperty('display');
+        api('/_entries', {}, function() {
+          var entries = JSON.parse(this.responseText);
+          for (var i = 0; i < entries.length; i++) {
+            var entryElement = document.createElement('li');
+            entryElement.appendChild(document.createTextNode(entries[i]));
+            changesElement.appendChild(entryElement);
+          }
+          // XXX wait for a while, then reload
+        });
+      }
+      timerElement.innerText = countdown.toString(10);
+      countdown--;
+    }
+    countdownInterval = setInterval(decrement, 1000);
+    decrement();
   });
 }
 

@@ -96,9 +96,26 @@ def _prompt():
     category = CATEGORIES.get(category_name)
     if not category:
         return '', 400
+    # wipe out the existing submissions
+    session_code = validate_lobby_code(session.get('hosting_lobby'))
+    if session_code:
+        open(filename_for_code(session_code), 'w').close()
+    else:
+        return '', 400
+
     product = choice(category)
     product['version'] = choice(VERSIONS)
     product['category'] = category_name
     if product['comments']:
         product['comment'] = choice(product['comments'])
     return product
+
+
+@app.route('/_entries', methods=['POST'])
+def _entries():
+    with open(filename_for_code(
+        validate_lobby_code(session.get('hosting_lobby'))
+    )) as ef:
+        return jsonify([
+            e.strip() for e in ef.readlines() if e.strip()
+        ])
