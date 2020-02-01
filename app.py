@@ -1,5 +1,5 @@
 import os
-from random import choice
+from random import choice, shuffle
 from string import ascii_lowercase
 
 from flask import (
@@ -122,6 +122,6 @@ def _entries():
     with open(filename_for_code(
         validate_lobby_code(session.get('hosting_lobby'))
     )) as ef:
-        return jsonify([
-            e.strip() for e in ef.readlines() if e.strip()
-        ])
+        entries = [e.strip() for e in ef.readlines() if e.strip()]
+        shuffle(entries)
+        return jsonify(entries)
