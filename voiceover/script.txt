@@ -1,11 +1,12 @@
 #First playthrough
-You must be the new group of experts that Mr XXX has hired. Welcome to Ventaplex!
+You must be the new group of experts. Welcome to Ventaplex! My name is XXX.
 You've been selected to help us tackle a very important issue, one that threatens the very foundations of the Ventaplex business.
 Patch notes.
 We have the developers. We have the software. We have a criminally underpaid, mismanaged and dedicated staff putting the best of the best on the Ventaplex store.
 But we don't have any patch notes.
 Our customers are very rightly, and very loudly, mocking the software on our store for not disclosing what is actually changing in each patch, which is where you come in.
-Only a talented group of experts like yourselves can get to the bottom of it.
+Only a talented group of experts like yourselves can get to the bottom of it. With the help of our trusty robot friend XXX, of course.
+Robot: "Run while you still can".
 Now off you go - there's thousands of patch notes that need to be written. And remember to take your job seriously!
 
 #Subsequent playthroughs (Pick one from A, B and C)
@@ -32,6 +33,11 @@ This is seriously a matter of life and death.
 The fate of the Ventaplex store is on your expert shoulders.
 
 #Misc Lines of dialogue
+Our robot pal XXX will help you from here. I have a prior appointment to make and it's terribly important.
+Our robot pal XXX will help you from here. I need to be in the other room where these patches aren't.
+Our robot pal XXX will help you from here. I must return to my post and try very hard to look busy.
+Our robot pal XXX will help you from here. I really need to pee so thems the breaks.
+Our robot pal XXX will help you from here. I'm not busy but honestly your work looks very boring.
 Here's patch number one/two/three.
 Get ready for patch number one/two/three.
 Next up is patch one/two/three.
