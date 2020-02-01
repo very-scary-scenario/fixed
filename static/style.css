@@ -124,3 +124,18 @@ html.host section .button {
   border: 1px solid #226;
   color: #226;
 }
+
+html.host #subtitle {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+  bottom: 1em;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: .5em 2em;
+  text-shadow: .1em .1em .05em black;
+}

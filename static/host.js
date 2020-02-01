@@ -9,6 +9,15 @@ var categoryElement = document.getElementById('category');
 var versionElement = document.getElementById('version');
 var timerElement = document.getElementById('timer');
 var changesElement = document.getElementById('changes');
+var subtitleElement = document.getElementById('subtitle');
+
+function speak(phrase) {
+  subtitleElement.textContent = phrase;
+  subtitleElement.style.removeProperty('display');
+  meSpeak.speak(phrase, {}, function() {
+    subtitleElement.style.setProperty('display', 'none');
+  });
+}
 
 function hideEverything() {
   lobbyElement.style.setProperty('display', 'none');
@@ -64,8 +73,7 @@ function chooseCategory(event) {
     categoryElement.innerText = product.category;
     versionElement.innerText = product.version;
     if (product.comment !== undefined) {
-      console.log(product.comment);
-      meSpeak.speak(product.name + ', version ' + product.version + '. ' + product.comment);
+      speak(product.name + ', version ' + product.version + '. ' + product.comment);
     }
 
     var countdown = 60;
@@ -95,6 +103,7 @@ function chooseCategory(event) {
 
 function beginGatheringPlayers() {
   hideEverything();
+  subtitleElement.style.setProperty('display', 'none');
   lobbyElement.style.removeProperty('display');
 }
 
