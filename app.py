@@ -49,14 +49,17 @@ def index():
 @app.route('/', methods=['POST'])
 def dispatch():
     code = request.form.get('lobby')
-    if code:
+    mode = request.form.get('mode')
+
+    if mode == 'join':
         code = validate_lobby_code(code)
         if not code:
             return redirect('/')
         else:
             session['playing_lobby'] = code
             return redirect('/play')
-    else:
+
+    elif mode == 'start':
         session['hosting_lobby'] = generate_lobby_code()
         return redirect('/host')
 
