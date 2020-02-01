@@ -27,6 +27,7 @@ def _load_category(filename):
 
 CATEGORIES = {name: category for name, category in (
     _load_category(fn) for fn in os.listdir(CATEGORIES_DIR)
+    if not fn.startswith('.')
 )}
 
 VERSIONS = [
