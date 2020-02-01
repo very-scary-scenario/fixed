@@ -1,5 +1,6 @@
 var countdownInterval;
 var lobbyElement = document.getElementById('lobby');
+var lobbyCtaElement = document.getElementById('lobby-cta');
 var categoriesElement = document.getElementById('categories');
 var categoriesListElement = document.getElementById('category-choices');
 var promptElement = document.getElementById('prompt');
@@ -22,7 +23,7 @@ function speak(phrase) {
 }
 
 function hideEverything() {
-  lobbyElement.style.setProperty('display', 'none');
+  lobbyCtaElement.style.setProperty('display', 'none');
   categoriesElement.style.setProperty('display', 'none');
   promptElement.style.setProperty('display', 'none');
 }
@@ -110,7 +111,7 @@ function chooseCategory(event) {
 function beginGatheringPlayers() {
   hideEverything();
   subtitleElement.style.setProperty('display', 'none');
-  lobbyElement.style.removeProperty('display');
+  lobbyCtaElement.style.removeProperty('display');
 }
 
 meSpeak.loadVoice('en/en');

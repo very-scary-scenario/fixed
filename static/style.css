@@ -116,6 +116,12 @@ html.host section {
   border-image: url('img/border_for_slicing.png') 14 36 5 5 / 14px 36px 5px 5px / 14px 5px 5px 5px repeat;
 }
 
+html.host section#lobby {
+  position: absolute;
+  bottom: 20vh;
+  right: 5vw;
+}
+
 html.host section .button {
   background-color: #aad;
   border-radius: 0;
