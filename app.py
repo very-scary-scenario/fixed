@@ -13,21 +13,31 @@ from flask import (
 
 from game import CATEGORIES, VERSIONS, get_categories_shortlist
 
+LOBBIES_DIR = os.path.join(os.path.dirname(__file__), 'lobbies')
+if not os.path.isdir(LOBBIES_DIR):
+    os.mkdir(LOBBIES_DIR)
+
 app = Flask(__name__)
 app.secret_key = str(os.urandom(32))
 
 
 def validate_lobby_code(code):
-    # XXX normalise it and check it exists
     code = code.lower()
     if (
-        isinstance(code, str)
+        isinstance(code, str) and
+        code in os.listdir(LOBBIES_DIR)
     ):
         return code
 
 
+def filename_for_code(lobby_code):
+    return os.path.join(LOBBIES_DIR, lobby_code)
+
+
 def generate_lobby_code():
-    return ''.join((choice(ascii_lowercase) for c in range(4)))
+    code = ''.join((choice(ascii_lowercase) for c in range(4)))
+    open(filename_for_code(code), 'a').close()
+    return code
 
 
 @app.route('/')
@@ -37,10 +47,14 @@ def index():
 
 @app.route('/', methods=['POST'])
 def dispatch():
-    if request.form.get('lobby'):
-        raise NotImplementedError(
-            'validate code, add lobby code to session, redirect to player'
-        )
+    code = request.form.get('lobby')
+    if code:
+        code = validate_lobby_code(code)
+        if not code:
+            return redirect('/')
+        else:
+            session['playing_lobby'] = code
+            return redirect('/play')
     else:
         session['hosting_lobby'] = generate_lobby_code()
         return redirect('/host')
@@ -55,8 +69,8 @@ def host():
         return redirect('/')
 
 
-@app.route('/player')
-def player():
+@app.route('/play')
+def play():
     return render_template('player.html')
 
 
