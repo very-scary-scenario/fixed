@@ -1,0 +1,76 @@
+:root {
+  --root-bg: hsla(147, 33%, 12%, 1);
+  --root-bg-faded: hsla(78, 33%, 27%, 1);
+  --root-hl: hsla(217, 60%, 47%, 1);
+  --root-fg-faded: hsla(224, 39%, 86%, 1);
+  --root-fg: hsla(240, 100%, 99%, 1);
+
+  --bg: var(--root-bg);
+  --bg-faded: var(--root-bg-faded);
+  --hl: var(--root-hl);
+  --fg-faded: var(--root-bg-faded);
+  --fg: var(--root-fg);
+
+  --border-radius: .2em;
+}
+
+form {
+  --bg: var(--root-fg);
+  --bg-faded: var(--root-fg-faded);
+  --fg-faded: var(--root-bg-faded);
+  --fg: var(--root-bg);
+
+  background-color: var(--bg);
+  color: var(--fg);
+  margin-bottom: .5em;
+}
+
+* {
+  border: none;
+  margin: 0;
+  padding: 0;
+  font-size: 1.1rem;
+  line-height: 1.2em;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: var(--bg);
+  color: var(--fg);
+  margin: 0 auto;
+  padding: 1em;
+  max-width: 40em;
+}
+
+p {
+  margin: .2em 0;
+}
+
+input[type="text"], input[type="submit"] {
+  padding: .2em .5em;
+  border-radius: var(--border-radius);
+}
+
+input[type="text"] {
+  background-color: var(--bg-faded);
+  color: var(--fg);
+}
+
+input[type="text"]::placeholder {
+  color: var(--fg-faded);
+}
+
+input[type="submit"] {
+  background-color: var(--fg-faded);
+  color: var(--bg);
+}
+
+a[href] {
+  color: var(--hl);
+  text-decoration: none;
+}
+
+#join-form, #new-game-form {
+  border-radius: var(--border-radius);
+  padding:.5em;
+}

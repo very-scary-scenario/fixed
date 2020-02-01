@@ -1,7 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
-  <form method="post">
-    <input type="text" name="lobby" placeholder="lobby code; leave blank to start a new game">
-    <input type="submit" value="play!">
+  <form method="post" id="join-form">
+    <p>Join an existing session</p>
+    <input type="hidden" name="mode" value="join">
+    <p>
+      <label for="code">
+        Session code:
+        <input type="text" name="lobby" placeholder="abcd">
+      </label></p>
+      <input type="submit" value="Join!">
+    </p>
+  </form>
+
+  <form method="post" id="new-game-form">
+    <p>Start a new game for others to join (this should be done on a screen that everyone can see)</p>
+    <input type="hidden" name="mode" value="start">
+    <p>
+      <input type="submit" value="Start a new game!">
+    </p>
   </form>
 {% endblock %}
