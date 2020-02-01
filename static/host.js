@@ -1,5 +1,6 @@
 var countdownInterval;
 var lobbyElement = document.getElementById('lobby');
+var hostnameElement = document.getElementById('hostname');
 var lobbyCtaElement = document.getElementById('lobby-cta');
 var categoriesElement = document.getElementById('categories');
 var categoriesListElement = document.getElementById('category-choices');
@@ -113,6 +114,7 @@ function chooseCategory(event) {
 
 function beginGatheringPlayers() {
   hideEverything();
+  hostnameElement.innerText = window.location.host;
   subtitleElement.style.setProperty('display', 'none');
   lobbyCtaElement.style.removeProperty('display');
 }

@@ -2,9 +2,9 @@
 {% block html_classes %}host{% endblock %}
 {% block content %}
   <section id="lobby">
-    <h1>your session code is <code>{{ session_code }}</code></h1>
+    <h1>session code: <code>{{ session_code }}</code></h1>
+    <p>join in at <span id="hostname"></span></p>
     <div id="lobby-cta">
-      <p>get everyone to join, then:</p>
       <p><a class="button" href="javascript:startRound();">Everyone is here! Go!</a></p>
     </div>
   </section>
