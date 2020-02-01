@@ -107,11 +107,13 @@ def _prompt():
     else:
         return '', 400
 
-    product = choice(category)
+    product = choice(category['releases'])
     product['version'] = random_version()
     product['category'] = category_name
-    if product['comments']:
-        product['comment'] = choice(product['comments'])
+    if product['comments'] or category['generic_comments']:
+        product['comment'] = choice(
+            product['comments'] or category['generic_comments']
+        )
     return product
 
 
