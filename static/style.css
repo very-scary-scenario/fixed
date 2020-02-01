@@ -23,6 +23,8 @@ form {
   background-color: var(--bg);
   color: var(--fg);
   margin-bottom: .5em;
+  border-radius: var(--border-radius);
+  padding:.5em;
 }
 
 * {
@@ -84,11 +86,6 @@ input[type="submit"], a[href].button {
 a[href] {
   text-decoration: none;
   color: var(--hl);
-}
-
-#join-form, #new-game-form {
-  border-radius: var(--border-radius);
-  padding:.5em;
 }
 
 html.host {

@@ -1,7 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
-  <form method="post">
-    <input name="entry" type="text" placeholder="fixed a bug where&hellip;">
-    <input type="submit">
+  <form method="post" id="entry-form">
+    <p>When asked, submit a thing that changed. Keep it short but descriptive; we want the users to understand what's changed for them in this new version.</p>
+    <p>You can submit as many as you like.</p>
+    <input id="entry" name="entry" type="text">
+    <input type="submit" value="Submit change">
   </form>
+
+  <script>
+    var entryElement = document.getElementById('entry');
+    var placeholders = [
+      'Made it so that…',
+      'Fixed a bug where…',
+      'Added support for…',
+      'Removed access to…',
+      'You can now…',
+      'New! Integration with…',
+      'Updated UI for…',
+      'Now you can…',
+      'Corrected support for…',
+      'Better handling of…',
+      'Resolved issues with…'
+    ];
+    entryElement.setAttribute('placeholder', placeholders[Math.floor(Math.random() * placeholders.length)]);
+    entryElement.focus();
+  </script>
 {% endblock %}
