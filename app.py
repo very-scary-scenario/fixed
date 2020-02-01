@@ -74,6 +74,17 @@ def play():
     return render_template('player.html')
 
 
+@app.route('/play', methods=['POST'])
+def log_entry():
+    entry = request.form.get('entry')
+    if not validate_lobby_code(session.get('playing_lobby')):
+        return redirect('/')
+    with open(filename_for_code(session.get('playing_lobby')), 'a') as lf:
+        lf.write(entry)
+        lf.write('\n')
+    return redirect('')
+
+
 @app.route('/_categories', methods=['POST'])
 def _categories():
     return jsonify(get_categories_shortlist())
