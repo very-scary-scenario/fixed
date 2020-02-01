@@ -2,6 +2,8 @@ MS-DOS
 >For cool people and hackers.
 Windows 3.1
 >Like 3.0, but 0.1 more.
+Windows 3.11
+>Like 3.1, but 0.01 more.
 Windows 95
 >For people that definitely don't know Windows 98 exists.
 Windows 98
