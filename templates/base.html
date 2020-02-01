@@ -1,12 +1,12 @@
 <!doctype html>
-<html>
+<html class="{% block html_classes %}{% endblock %}">
   <head>
     <meta charset="utf-8">
     <title>vss.ggj20</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
-  <body>
+  <body class="">
     {% block content %}
     {% endblock %}
   </body>
