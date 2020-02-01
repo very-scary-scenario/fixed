@@ -88,6 +88,7 @@ html.host {
 
 html.host::before {
   position: absolute;
+  z-index: -1;
   content: ' ';
   display: block;
   background-image: url('img/desktop_icons.png');
@@ -97,8 +98,9 @@ html.host::before {
 }
 
 html.host section {
-  position: absolute;
-  top: 10vh;
+  position: relative;
+  display: inline-block;
+  margin-top: 10vh;
   padding: 1em;
   background-color: #ccf;
   color: black !important;
