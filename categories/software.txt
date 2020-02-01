@@ -30,3 +30,6 @@ Emacs
 >Plug in your foot pedals.
 WinRAR
 >Shareware, please register your copy.
+dd
+>It's me, the disk destroyer.
+>Which one was it again? 'if=' or 'of='?
