@@ -47,7 +47,11 @@ OS_VERSIONS = {
 }
 
 def random_datetime(p_not_time=0, p_not_day=0, p_not_month=0):
-    '''Pick a random datetime and give it back in the form YYYYMMDDhhmmss'''
+    '''Pick a random datetime and give it back in the form YYYYMMDDhhmmss.
+    The time, day, and month can be omitted at random, with probability
+    1 - `p_not_time`, 1 - `p_not_day`, and 1 - `p_not_month` respectively.
+    By default all are included.
+    '''
 
     # Pick an offset to now, in seconds
     seconds_per_year = 31_557_600
