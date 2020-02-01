@@ -18,6 +18,7 @@ WireGuard
 Wireshark
 >Blåhajs favourite network troubleshooting tool.
 >May cause you to believe in ghosts.
+>Connects you with the Ethereal.
 Microsoft Word
 >Don't forget the Computer Modern font.
 vim
@@ -26,4 +27,6 @@ vim
 VLC
 >I love traffic cones.
 Emacs
->Plug in your foot pedals
+>Plug in your foot pedals.
+WinRAR
+>Shareware, please register your copy.
