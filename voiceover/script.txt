@@ -1,1 +1,55 @@
-test
+#First playthrough
+You must be the new group of experts. Welcome to Ventaplex! My name is XXX.
+You've been selected to help us tackle a very important issue, one that threatens the very foundations of the Ventaplex business.
+Patch notes.
+We have the developers. We have the software. We have a criminally underpaid, mismanaged and dedicated staff putting the best of the best on the Ventaplex store.
+But we don't have any patch notes.
+Our customers are very rightly, and very loudly, mocking the software on our store for not disclosing what is actually changing in each patch, which is where you come in.
+Only a talented group of experts like yourselves can get to the bottom of it. With the help of our trusty robot friend Tobor, of course.
+Tobor: "Run while you still can".
+Now off you go - there's thousands of patch notes that need to be written. And remember to take your job seriously!
+
+#Subsequent playthroughs (Pick one from A, B and C)
+
+#A
+Glad to see you back! That's makes you a member of a very exclusive club, you know!
+Oh finally, I thought you'd never show up.
+There you are. We've been looking everywhere for you.
+Well look what the cat dragged in.
+I know where you've been, and it wasn't at your desk working for no pay like the rest of us.
+
+#B (only mention 'patch notes' here to save repetition)
+There's plenty more patch notes that need to be written before we can get these updates on the Ventaplex store.
+Software updates stop for no one, and the people need their patch notes.
+We're at patch note breaking point, we can't take it much longer.
+We're so backed up with unwritten patch notes that our systems are about to burst.
+We started emailing developers to write their own patch notes but no one ever gets back to us.
+
+#C
+Get a move on, time's a wastin'.
+So get out there and write us some. Expertly.
+There's no time to waste!
+This is seriously a matter of life and death.
+The fate of the Ventaplex store is on your expert shoulders.
+
+#Misc Lines of dialogue
+Our robot pal Tobor will help you from here. I have a prior appointment to make and it's terribly important.
+Our robot pal Tobor will help you from here. I need to be in the other room where these patches aren't.
+Our robot pal Tobor will help you from here. I must return to my post and try very hard to look busy.
+Our robot pal Tobor will help you from here. I really need to pee so thems the breaks.
+Our robot pal Tobor will help you from here. I'm not busy but honestly your work looks very boring.
+Here's patch number one/two/three.
+Get ready for patch number one/two/three.
+Next up is patch one/two/three.
+This is the first/second of three patches.
+This is the final patch.
+
+Vote for a patch category.
+Time to pick a patch category.
+Pick from one of these categories. 
+Select a category.
+
+Well, there you have it. Another three patches to offset the thousands of updates going out every day.
+That's a wrap. Three more patches can finally be enjoyed correctly.
+And that's that. Congratulations to us all! 
+A hard day of work over. Please come back tomorrow. 
