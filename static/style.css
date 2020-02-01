@@ -29,7 +29,6 @@ form {
   border: none;
   margin: 0;
   padding: 0;
-  font-size: 1.1rem;
   line-height: 1.2em;
 }
 
@@ -37,6 +36,11 @@ html {
   background-color: var(--bg);
   color: var(--fg);
   font-family: sans-serif;
+  font-size: 1.1rem;
+}
+
+h1, h2, h3, h4, h5 {
+  font-size: 1.2em;
 }
 
 body {
@@ -98,6 +102,7 @@ html.host::before {
 }
 
 html.host section {
+  font-size: 1.2em;
   position: relative;
   display: inline-block;
   margin-top: 10vh;
