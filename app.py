@@ -53,10 +53,15 @@ def dispatch():
 
     if mode == 'join':
         code = validate_lobby_code(code)
-        if not code:
+        name = request.form.get('name')
+
+        if not (code and name):
             return redirect('/')
         else:
             session['playing_lobby'] = code
+            session['name'] = (
+                name.replace('\n', '').replace('\r', '').replace('#', '')
+            )
             return redirect('/play')
 
     elif mode == 'start':
@@ -81,11 +86,20 @@ def play():
 @app.route('/play', methods=['POST'])
 def log_entry():
     entry = request.form.get('entry')
+
+    if not entry.strip():
+        return redirect('')
+
     if not validate_lobby_code(session.get('playing_lobby')):
         return redirect('/')
+
     with open(filename_for_code(session.get('playing_lobby')), 'a') as lf:
-        lf.write(entry)
+        lf.write('{}#{}'.format(
+            session.get('name'),
+            entry.replace('\n', '').replace('\r', ''),
+        ))
         lf.write('\n')
+
     return redirect('')
 
 
@@ -122,6 +136,9 @@ def _entries():
     with open(filename_for_code(
         validate_lobby_code(session.get('hosting_lobby'))
     )) as ef:
-        entries = [e.strip() for e in ef.readlines() if e.strip()]
+        entries = [{'name': name, 'entry': entry} for name, entry in (
+            e.strip().split('#', 1)
+            for e in ef.readlines() if e.strip()
+        )]
         shuffle(entries)
         return jsonify(entries)

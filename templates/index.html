@@ -3,11 +3,15 @@
   <form method="post" id="join-form">
     <p>Join an existing session</p>
     <input type="hidden" name="mode" value="join">
+    <label for="lobby-input">
+      <p>Session code:</p>
+      <p><input id="lobby-input" type="text" name="lobby" placeholder="abcd"></p>
+    </label>
+    <label for="name-input">
+      <p>Your name:</p>
+      <p><input id="name-input" type="text" name="name" placeholder="abcd"></p>
+    </label>
     <p>
-      <label for="code">
-        Session code:
-        <input type="text" name="lobby" placeholder="abcd">
-      </label></p>
       <input type="submit" value="Join!">
     </p>
   </form>

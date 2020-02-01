@@ -11,6 +11,8 @@ var timerElement = document.getElementById('timer');
 var changesElement = document.getElementById('changes');
 var subtitleElement = document.getElementById('subtitle');
 
+var ROUND_LENGTH = 20;  // in seconds
+
 function speak(phrase) {
   subtitleElement.textContent = phrase;
   subtitleElement.style.removeProperty('display');
@@ -76,7 +78,7 @@ function chooseCategory(event) {
       speak(product.name + ', version ' + product.version + '. ' + product.comment);
     }
 
-    var countdown = 60;
+    var countdown = ROUND_LENGTH;
 
     function decrement() {
       if (countdown === 0) {
@@ -87,7 +89,11 @@ function chooseCategory(event) {
           var entries = JSON.parse(this.responseText);
           for (var i = 0; i < entries.length; i++) {
             var entryElement = document.createElement('li');
-            entryElement.appendChild(document.createTextNode(entries[i]));
+            entryElement.appendChild(document.createTextNode(entries[i].entry));
+            var attributionElement = document.createElement('em');
+            attributionElement.appendChild(document.createTextNode('-' + entries[i].name));
+            entryElement.appendChild(document.createTextNode(' '));
+            entryElement.appendChild(attributionElement);
             changesElement.appendChild(entryElement);
           }
           // XXX wait for a while, then reload
