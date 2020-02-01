@@ -11,7 +11,8 @@ from flask import (
     session,
 )
 
-from game import CATEGORIES, VERSIONS, get_categories_shortlist
+from game import CATEGORIES, get_categories_shortlist
+from version import random_version
 
 LOBBIES_DIR = os.path.join(os.path.dirname(__file__), 'lobbies')
 if not os.path.isdir(LOBBIES_DIR):
@@ -104,7 +105,7 @@ def _prompt():
         return '', 400
 
     product = choice(category)
-    product['version'] = choice(VERSIONS)
+    product['version'] = random_version()
     product['category'] = category_name
     if product['comments']:
         product['comment'] = choice(product['comments'])

@@ -1,6 +1,8 @@
 import os
 from random import choice, sample
 
+from version import random_version
+
 
 CATEGORIES_DIR = os.path.join(os.path.dirname(__file__), 'categories')
 
@@ -30,15 +32,6 @@ CATEGORIES = {name: category for name, category in (
     if not fn.startswith('.')
 )}
 
-VERSIONS = [
-    '0.0.1',
-    '1.0 alpha 3',
-    '15.0.2',
-    '2019.07.9',
-    '2.0',
-    '0.9.2',
-]
-
 
 if __name__ == '__main__':
     shortlist = get_categories_shortlist()
@@ -48,8 +41,8 @@ if __name__ == '__main__':
     category = shortlist[int(input('pick a category!\n> ')) - 1]
 
     product = choice(CATEGORIES[category])['name']
-    version = 'version {}'.format(choice(VERSIONS))
 
     print(
-        f'New release: {product}, version {version}!\n\nChanges include:\n\n>'
+        f'New release: {product}, version {random_version()}!'
+        '\n\nChanges include:\n\n>'
     )
