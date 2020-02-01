@@ -5,6 +5,7 @@ var categoriesElement = document.getElementById('categories');
 var categoriesListElement = document.getElementById('category-choices');
 var promptElement = document.getElementById('prompt');
 var promptOpenElement = document.getElementById('prompt-open');
+var restartElement = document.getElementById('restart-ui');
 var productElement = document.getElementById('product');
 var categoryElement = document.getElementById('category');
 var versionElement = document.getElementById('version');
@@ -12,7 +13,7 @@ var timerElement = document.getElementById('timer');
 var changesElement = document.getElementById('changes');
 var subtitleElement = document.getElementById('subtitle');
 
-var ROUND_LENGTH = 20;  // in seconds
+var ROUND_LENGTH = 60;  // in seconds
 
 function speak(phrase) {
   subtitleElement.textContent = phrase;
@@ -26,6 +27,7 @@ function hideEverything() {
   lobbyCtaElement.style.setProperty('display', 'none');
   categoriesElement.style.setProperty('display', 'none');
   promptElement.style.setProperty('display', 'none');
+  restartElement.style.setProperty('display', 'none');
 }
 
 function api(endpoint, params, callback) {
@@ -41,7 +43,7 @@ function api(endpoint, params, callback) {
   xhr.send(formData);
 }
 
-function everyoneIsHere() {
+function startRound() {
   hideEverything();
 
   api('/_categories', {}, function() {
@@ -97,7 +99,8 @@ function chooseCategory(event) {
             entryElement.appendChild(attributionElement);
             changesElement.appendChild(entryElement);
           }
-          // XXX wait for a while, then reload
+
+          restartElement.style.removeProperty('display');
         });
       }
       timerElement.innerText = countdown.toString(10);
