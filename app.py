@@ -1,6 +1,15 @@
 from random import choice
 from string import ascii_lowercase
-from flask import Flask, render_template, request, redirect, session
+from flask import (
+    Flask,
+    jsonify,
+    redirect,
+    render_template,
+    request,
+    session,
+)
+
+from game import CATEGORIES, VERSIONS, get_categories_shortlist
 
 app = Flask(__name__)
 app.secret_key = 'XXX'  # XXX
@@ -47,3 +56,20 @@ def host():
 @app.route('/player')
 def player():
     return render_template('player.html')
+
+
+@app.route('/_categories', methods=['POST'])
+def _categories():
+    return jsonify(get_categories_shortlist())
+
+
+@app.route('/_prompt', methods=['POST'])
+def _prompt():
+    category = CATEGORIES.get(request.form.get('category'))
+    if not category:
+        return '', 400
+    product = choice(category)
+    product['version'] = choice(VERSIONS)
+    if product['comments']:
+        product['comment'] = choice(product['comments'])
+    return product
