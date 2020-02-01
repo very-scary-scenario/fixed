@@ -1,0 +1,14 @@
+Chicken
+>Tastes like chicken.
+Cow
+>Industry-grade milkshake maker.
+Duck
+>Look at all those chickens.
+Goat
+>Just an angry sheep.
+Goose
+>A duck that was born angry.
+Pig
+>Good friends always make good sandwiches.
+Sheep
+>Pretty fluffy, so therefore pretty good.
