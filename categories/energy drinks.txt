@@ -6,9 +6,14 @@ Coffee
 >The original.
 Bang Energy
 >Oh no.
+>Oh yes.
 Euro Shopper Energy Drink
 >Contains no caffeine.
 >Placebo energy.
 Rich Energy
 >A brilliantly made elite drink for the discerning customer.
 >Get Rich and enjoy the experience.
+Tiger Blue Screen
+>FOR (C= KAMEHAMEHA ? 1 : BOOST;;)
+>0x00000116 BANANA BOMB
+>USE YOUR ACHIEVEMENT
