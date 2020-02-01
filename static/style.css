@@ -33,10 +33,13 @@ form {
   line-height: 1.2em;
 }
 
-body {
-  font-family: sans-serif;
+html {
   background-color: var(--bg);
   color: var(--fg);
+  font-family: sans-serif;
+}
+
+body {
   margin: 0 auto;
   padding: 1em;
   max-width: 40em;
@@ -46,7 +49,7 @@ p {
   margin: .2em 0;
 }
 
-input[type="text"], input[type="submit"] {
+input[type="text"], input[type="submit"], a[href].button {
   padding: .2em .5em;
   border-radius: var(--border-radius);
 }
@@ -60,14 +63,14 @@ input[type="text"]::placeholder {
   color: var(--fg-faded);
 }
 
-input[type="submit"] {
+input[type="submit"], a[href].button {
   background-color: var(--fg-faded);
   color: var(--bg);
 }
 
 a[href] {
-  color: var(--hl);
   text-decoration: none;
+  color: var(--hl);
 }
 
 #join-form, #new-game-form {
@@ -87,4 +90,22 @@ html.host::before {
   width: 200px;
   height: 500px;
   background-repeat: no-repeat;
+}
+
+html.host section {
+  position: absolute;
+  top: 10vh;
+  padding: 1em;
+  background-color: #ccf;
+  color: black !important;
+  background-clip: padding-box;
+  color: var(--fg);
+  border-image: url('img/border_for_slicing.png') 14 36 5 5 / 14px 36px 5px 5px / 14px 5px 5px 5px repeat;
+}
+
+html.host section .button {
+  background-color: #aad;
+  border-radius: 0;
+  border: 1px solid #226;
+  color: #226;
 }
