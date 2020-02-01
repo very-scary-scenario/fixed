@@ -3,6 +3,7 @@ var categoriesElement = document.getElementById('categories');
 var categoriesListElement = document.getElementById('category-choices');
 var promptElement = document.getElementById('prompt');
 var productElement = document.getElementById('product');
+var categoryElement = document.getElementById('category');
 var versionElement = document.getElementById('version');
 
 function hideEverything() {
@@ -52,6 +53,7 @@ function chooseCategory(event) {
     promptElement.style.removeProperty('display');
     product = JSON.parse(this.responseText);
     productElement.innerText = product.name;
+    categoryElement.innerText = product.category;
     versionElement.innerText = product.version;
     if (product.comment) {
       console.log(product.comment);

@@ -65,11 +65,13 @@ def _categories():
 
 @app.route('/_prompt', methods=['POST'])
 def _prompt():
-    category = CATEGORIES.get(request.form.get('category'))
+    category_name = request.form.get('category')
+    category = CATEGORIES.get(category_name)
     if not category:
         return '', 400
     product = choice(category)
     product['version'] = choice(VERSIONS)
+    product['category'] = category_name
     if product['comments']:
         product['comment'] = choice(product['comments'])
     return product
