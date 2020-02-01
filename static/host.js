@@ -65,7 +65,7 @@ function chooseCategory(event) {
     versionElement.innerText = product.version;
     if (product.comment !== undefined) {
       console.log(product.comment);
-      meSpeak.speak(product.comment);
+      meSpeak.speak(product.name + '. ' + product.comment);
     }
 
     var countdown = 60;
