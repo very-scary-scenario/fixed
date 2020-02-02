@@ -88,6 +88,14 @@ a[href] {
   color: var(--hl);
 }
 
+.inputp {
+  display: flex;
+}
+
+.inputp input {
+  flex-grow: 100;
+}
+
 html.host {
   background-image: url('img/repeating_desktop_tile.png');
 }
