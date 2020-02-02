@@ -1,4 +1,4 @@
-#First playthrough
+#firsttimehowtoplay
 You must be the new group of experts. Welcome to Ventaplex! My name is Cadmus Kempelen.
 You've been selected to help us tackle a very important issue, one that threatens the very foundations of the Ventaplex business.
 Patch notes.
@@ -17,8 +17,6 @@ The winner is the expert that has the most votes at the end of the session.
 Tobor: "Ventaplex would like to remind all employees that we do not condone competition and employees found to be breaking this rule will be sent home without pay".
 Now off you go - there's thousands of patch notes that need to be written. And remember to take your job seriously!
 
-#Subsequent playthroughs (Pick one from A, B and C)
-
 #A
 Glad to see you back! That's makes you a member of a very exclusive club, you know!
 Oh finally, I thought you'd never show up.
@@ -26,7 +24,7 @@ There you are. We've been looking everywhere for you.
 Well look what the cat dragged in.
 I know where you've been, and it wasn't at your desk working for no pay like the rest of us.
 
-#B (only mention 'patch notes' here to save repetition)
+#B
 There's plenty more patch notes that need to be written before we can get these updates on the Ventaplex store.
 Software updates stop for no one, and the people need their patch notes.
 We're at patch note breaking point, we can't take it much longer.
