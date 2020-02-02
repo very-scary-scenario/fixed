@@ -42,6 +42,7 @@ The fate of the Ventaplex store is on your expert shoulders.
 
 #D
 Our robot pal Tobor will help you from here.
+
 #E
 I have a prior appointment to make and it's terribly important.
 I need to be in the other room where these patches aren't.
@@ -49,18 +50,20 @@ I must return to my post and try very hard to look busy.
 I really need to pee so thems the breaks.
 I'm not busy but honestly your work looks very boring.
 
-Here's patch number one/two/three.
-Get ready for patch number one/two/three.
-Next up is patch one/two/three.
-This is the first/second of three patches.
-This is the final patch.
+#F
+Here's the next patch.
+Get ready for the next patch.
+Oh look, it's another patch.
+Oh look, here comes another one.
+Next up, it's a patch.
+Who would have thought? There's another patch.
+Time to vote for a patch category.
+Choose a patch category.
+Pick from any of these patch categories - I don't care.
+Select a category already.
 
-Vote for a patch category.
-Time to pick a patch category.
-Pick from one of these categories. 
-Select a category.
-
+#G
 Well, there you have it. Another three patches to offset the thousands of updates going out every day.
 That's a wrap. Three more patches can finally be enjoyed correctly.
-And that's that. Congratulations to us all! 
-A hard day of work over. Please come back tomorrow. 
+And that's that. Congratulations to me. 
+A hard day of work over. Please come back tomorrow. I beg you.
