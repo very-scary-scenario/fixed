@@ -120,12 +120,6 @@ function animateBoss() {
 }
 
 function startRound(event) {
-  playAudioFrom('A', function() {
-    playAudioFrom('B', function() {
-      playAudioFrom('C');
-    });
-  });
-
   var winnerUUID;
 
   if (event) {
@@ -144,15 +138,15 @@ function startRound(event) {
       alert(this.responseText);
       return;
     }
+    var response = JSON.parse(this.responseText);
+    if (response.message) alert(response.message);
     categoriesElement.style.removeProperty('display');
     categoriesListElement.innerHTML = '';
-    var response = JSON.parse(this.responseText);
     var categories = response.categories;
     currentPlayerUUID = response.player.uuid;
     currentPlayerName = response.player.name;
     categoryChooserElement.innerText = currentPlayerName;
     favouriteChooserElement.innerText = currentPlayerName;
-    if (response.message) alert(response.message);
 
     for (var i = 0; i < categories.length; i++) {
       var categoryListItem = document.createElement('li');
@@ -163,6 +157,12 @@ function startRound(event) {
       categoryListItem.appendChild(categoryLink);
       categoriesListElement.appendChild(categoryListItem);
     }
+
+    playAudioFrom('A', function() {
+      playAudioFrom('B', function() {
+        playAudioFrom('C');
+      });
+    });
   });
 }
 
