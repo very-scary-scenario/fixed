@@ -3,9 +3,12 @@ var lobbyElement = document.getElementById('lobby');
 var hostnameElement = document.getElementById('hostname');
 var lobbyCtaElement = document.getElementById('lobby-cta');
 var categoriesElement = document.getElementById('categories');
+var categoryChooserElement = document.getElementById('category-chooser');
+var favouriteChooserElement = document.getElementById('favourite-chooser');
 var categoriesListElement = document.getElementById('category-choices');
 var promptElement = document.getElementById('prompt');
 var promptOpenElement = document.getElementById('prompt-open');
+var promptClosedElement = document.getElementById('prompt-closed');
 var restartElement = document.getElementById('restart-ui');
 var productElement = document.getElementById('product');
 var categoryElement = document.getElementById('category');
@@ -14,6 +17,8 @@ var timerElement = document.getElementById('timer');
 var changesElement = document.getElementById('changes');
 var bossElement = document.getElementById('boss');
 var subtitleElement = document.getElementById('subtitle');
+var currentPlayerUUID;
+var currentPlayerName;
 
 var ROUND_LENGTH = 60;  // in seconds
 var MOODS = ['neutral', 'crossed', 'frown', 'point'];
@@ -51,13 +56,33 @@ function animateBoss() {
   setTimeout(animateBoss, 1000 + Math.random() * 2000);
 }
 
-function startRound() {
+function startRound(event) {
+  var winnerUUID;
+
+  if (event) {
+    event.preventDefault();
+    winnerUUID = event.currentTarget.getAttribute('data-player');
+  }
+
   hideEverything();
 
-  api('/_categories', {}, function() {
+  api('/_categories', {
+    winner: winnerUUID || '',
+    judge: currentPlayerUUID || ''
+  }, function() {
+    if (this.status !== 200) {
+      lobbyCtaElement.style.removeProperty('display');
+      alert(this.responseText);
+      return;
+    }
     categoriesElement.style.removeProperty('display');
     categoriesListElement.innerHTML = '';
-    categories = JSON.parse(this.responseText);
+    var response = JSON.parse(this.responseText);
+    var categories = response.categories;
+    currentPlayerUUID = response.player.uuid;
+    currentPlayerName = response.player.name;
+    categoryChooserElement.innerText = currentPlayerName;
+    favouriteChooserElement.innerText = currentPlayerName;
 
     for (var i = 0; i < categories.length; i++) {
       var categoryListItem = document.createElement('li');
@@ -77,6 +102,7 @@ function chooseCategory(event) {
   changesElement.style.setProperty('display', 'none');
   changesElement.innerHTML = '';
   promptOpenElement.style.setProperty('display', 'none');
+  promptClosedElement.style.setProperty('display', 'none');
 
   api('_prompt', {category: event.currentTarget.innerText}, function() {
     promptElement.style.removeProperty('display');
@@ -94,17 +120,26 @@ function chooseCategory(event) {
     function decrement() {
       if (countdown === 0) {
         promptOpenElement.style.setProperty('display', 'none');
+        promptClosedElement.style.removeProperty('display');
         clearInterval(countdownInterval);
         changesElement.style.removeProperty('display');
         api('/_entries', {}, function() {
-          var entries = JSON.parse(this.responseText);
+          var response = JSON.parse(this.responseText);
+          var entries = response.entries;
           for (var i = 0; i < entries.length; i++) {
             var entryElement = document.createElement('li');
-            entryElement.appendChild(document.createTextNode(entries[i].entry));
+            var entryLink = document.createElement('a');
+            entryLink.setAttribute('data-player', entries[i].uuid);
+            entryLink.appendChild(document.createTextNode(entries[i].entry));
+            if (entries[i].uuid !== currentPlayerUUID) {
+              entryLink.setAttribute('href', '#');
+              entryLink.addEventListener('click', startRound);
+            }
             var attributionElement = document.createElement('em');
             attributionElement.appendChild(document.createTextNode('-' + entries[i].name));
-            entryElement.appendChild(document.createTextNode(' '));
-            entryElement.appendChild(attributionElement);
+            entryLink.appendChild(document.createTextNode(' '));
+            entryLink.appendChild(attributionElement);
+            entryElement.appendChild(entryLink);
             changesElement.appendChild(entryElement);
           }
 

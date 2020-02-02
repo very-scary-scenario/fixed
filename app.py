@@ -1,4 +1,5 @@
 import os
+import json
 from random import choice, shuffle
 from string import ascii_lowercase
 from uuid import uuid4
@@ -32,13 +33,27 @@ def validate_lobby_code(code):
         return code
 
 
-def filename_for_code(lobby_code):
+def entry_filename_for_code(lobby_code):
     return os.path.join(LOBBIES_DIR, lobby_code)
+
+
+def state_filename_for_code(lobby_code):
+    return entry_filename_for_code(lobby_code) + '.json'
+
+
+def load_state(lobby_code):
+    with open(state_filename_for_code(lobby_code), 'r') as rsf:
+        return json.load(rsf)
+
+
+def save_state(lobby_code, state):
+    with open(state_filename_for_code(lobby_code), 'w') as wsf:
+        return json.dump(state, wsf)
 
 
 def generate_lobby_code():
     code = ''.join((choice(ascii_lowercase) for c in range(4)))
-    open(filename_for_code(code), 'a').close()
+    open(entry_filename_for_code(code), 'a').close()
     return code
 
 
@@ -64,10 +79,19 @@ def dispatch():
                 name.replace('\n', '').replace('\r', '').replace('#', '')
             )
             session['player_uuid'] = str(uuid4())
+            state = load_state(code)
+            state['players'][session['player_uuid']] = {
+                'name': name,
+                'score': 0,
+                'turns': 0,
+            }
+            save_state(code, state)
             return redirect('/play')
 
     elif mode == 'start':
-        session['hosting_lobby'] = generate_lobby_code()
+        code = generate_lobby_code()
+        session['hosting_lobby'] = code
+        save_state(code, {'players': {}})
         return redirect('/host')
 
 
@@ -95,7 +119,9 @@ def log_entry():
     if not validate_lobby_code(session.get('playing_lobby')):
         return redirect('/')
 
-    with open(filename_for_code(session.get('playing_lobby')), 'a') as lf:
+    with open(
+        entry_filename_for_code(session.get('playing_lobby')), 'a',
+    ) as lf:
         lf.write('{}#{}#{}'.format(
             session.get('name'),
             session.get('player_uuid'),
@@ -108,7 +134,33 @@ def log_entry():
 
 @app.route('/_categories', methods=['POST'])
 def _categories():
-    return jsonify(get_categories_shortlist())
+    state = load_state(session.get('hosting_lobby'))
+
+    if not state['players']:
+        return 'Get some people to join the session first.', 400
+
+    winner = request.form.get('winner')
+    if winner and winner in state['players']:
+        state['players'][winner]['score'] += 1
+
+    judge = request.form.get('judge')
+    if judge and judge in state['players']:
+        state['players'][judge]['turns'] += 1
+
+    fewest_turns = min((
+        pl['turns'] for pl in state['players'].values()
+    ))
+    player_id = choice([
+        uuid for uuid, p in state['players'].items()
+        if p['turns'] == fewest_turns
+    ])
+    save_state(session.get('hosting_lobby'), state)
+    return jsonify({
+        'categories': get_categories_shortlist(),
+        'player': {
+            'uuid': player_id, 'name': state['players'][player_id]['name'],
+        }
+    })
 
 
 @app.route('/_prompt', methods=['POST'])
@@ -120,7 +172,7 @@ def _prompt():
     # wipe out the existing submissions
     session_code = validate_lobby_code(session.get('hosting_lobby'))
     if session_code:
-        open(filename_for_code(session_code), 'w').close()
+        open(entry_filename_for_code(session_code), 'w').close()
     else:
         return '', 400
 
@@ -136,12 +188,19 @@ def _prompt():
 
 @app.route('/_entries', methods=['POST'])
 def _entries():
-    with open(filename_for_code(
-        validate_lobby_code(session.get('hosting_lobby'))
-    )) as ef:
-        entries = [{'name': name, 'entry': entry} for name, uuid, entry in (
+    code = validate_lobby_code(session.get('hosting_lobby'))
+
+    if not code:
+        return '', 400
+
+    with open(entry_filename_for_code(code)) as ef:
+        entries = [{
+            'name': name, 'uuid': uuid, 'entry': entry,
+        } for name, uuid, entry in (
             e.strip().split('#', 2)
             for e in ef.readlines() if e.strip()
         )]
         shuffle(entries)
-        return jsonify(entries)
+        return jsonify({
+            'entries': entries,
+        })
