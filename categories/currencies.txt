@@ -7,6 +7,8 @@ Danish Krona
 Euro
 >Novelty 0 Euro notes are a thing.
 Yen
+>Zenny.
+>Japanese arcade tokens.
 Won
 Yuan
 British Pound
@@ -25,3 +27,7 @@ Litecoin
 >We missed the start of Bitcoin and were really upset about it.
 Ethereum
 >Intentional remote code execution.
+Zloty
+>March, march Dabrowski!
+Ruble
+>In Soviet Russia, money spends you.

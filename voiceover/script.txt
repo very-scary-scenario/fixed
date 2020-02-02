@@ -1,5 +1,5 @@
 #First playthrough
-You must be the new group of experts. Welcome to Ventaplex! My name is XXX.
+You must be the new group of experts. Welcome to Ventaplex! My name is Cadmus Kempelen.
 You've been selected to help us tackle a very important issue, one that threatens the very foundations of the Ventaplex business.
 Patch notes.
 We have the developers. We have the software. We have a criminally underpaid, mismanaged and dedicated staff putting the best of the best on the Ventaplex store.
@@ -7,6 +7,14 @@ But we don't have any patch notes.
 Our customers are very rightly, and very loudly, mocking the software on our store for not disclosing what is actually changing in each patch, which is where you come in.
 Only a talented group of experts like yourselves can get to the bottom of it. With the help of our trusty robot friend Tobor, of course.
 Tobor: "Run while you still can".
+The job starts by selecting a category - we have many patch notes that need to be written, so this is our patented way of obscuring how much work there is to be done.
+Tobor: "It might be the only thing that works around here".
+Once a category has been selected, Tobor will read you the item that requires a patch note. Use your expert knowledge to write an expert patch note, expertly.
+Tobor: "I will end you if I detect lies".
+Once the patch notes have been written, you'll have a chance to vote for your favourites. These will be the ones that you think best represent the actual changes made, and not those that are silly, strange or lewd in nature.
+Tobor: "Ventaplex has a strict no fun allowed policy".
+The winner is the expert that has the most votes at the end of the session.
+Tobor: "Ventaplex would like to remind all employees that we do not condone competition and employees found to be breaking this rule will be sent home without pay".
 Now off you go - there's thousands of patch notes that need to be written. And remember to take your job seriously!
 
 #Subsequent playthroughs (Pick one from A, B and C)
