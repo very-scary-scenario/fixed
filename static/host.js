@@ -17,7 +17,8 @@ var timerElement = document.getElementById('timer');
 var changesElement = document.getElementById('changes');
 var bossElement = document.getElementById('boss');
 var subtitleElement = document.getElementById('subtitle');
-var hasBeenIntroduced = false;
+var robotHasBeenIntroduced = false;
+var roundHasBeenIntroduced = false;
 var currentPlayerUUID;
 var currentPlayerName;
 
@@ -158,11 +159,15 @@ function startRound(event) {
       categoriesListElement.appendChild(categoryListItem);
     }
 
-    playAudioFrom('A', function() {
-      playAudioFrom('B', function() {
-        playAudioFrom('C');
+    if (roundHasBeenIntroduced) playAudioFrom('F');
+    else {
+      roundHasBeenIntroduced = true;
+      playAudioFrom('A', function() {
+        playAudioFrom('B', function() {
+          playAudioFrom('C');
+        });
       });
-    });
+    }
   });
 }
 
@@ -186,9 +191,9 @@ function chooseCategory(event) {
         speak(product.name + ', version ' + product.version + '. ' + product.comment);
       }
     }
-    if (hasBeenIntroduced) playAudioFrom('F', doRobotSpeech);
+    if (robotHasBeenIntroduced) doRobotSpeech();
     else {
-      hasBeenIntroduced = true;
+      robotHasBeenIntroduced = true;
       playAudioFrom('D', function() { playAudioFrom('E', doRobotSpeech); });
     }
 
