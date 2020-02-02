@@ -5,7 +5,7 @@ Liverpool
 Manchester United
 >How the mighty have fallen.
 Manchester City
->THe better one.
+>The better one.
 Arsenal
 >Still gunning for silverware.
 Chelsea
@@ -18,3 +18,5 @@ Leicester City
 >The ultimate underdogs.
 Burnley
 >Well..their style is effective, I guess.
+Wolverhampton Wanderers
+>Hungry like the wolf, occasionally. 
