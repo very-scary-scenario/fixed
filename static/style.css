@@ -94,7 +94,7 @@ html.host {
 
 html.host::before {
   position: absolute;
-  z-index: -1;
+  z-index: -5;
   content: ' ';
   display: block;
   background-image: url('img/desktop_icons.png');
@@ -128,6 +128,20 @@ html.host section .button {
   border: 1px solid #226;
   color: #226;
 }
+
+html.host #boss {
+  z-index: -1;
+  position: absolute;
+  bottom: 10vh;
+  left: 7vw;
+  height: 400px;
+  width: 256px;
+}
+
+#boss[data-mood="neutral"] { background-image: url("img/man_neutral.png"); }
+#boss[data-mood="frown"] { background-image: url("img/man_frown.png"); }
+#boss[data-mood="crossed"] { background-image: url("img/man_crossed.png"); }
+#boss[data-mood="point"] { background-image: url("img/man_point.png"); }
 
 html.host #subtitle {
   color: white;

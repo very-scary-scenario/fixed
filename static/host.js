@@ -12,9 +12,11 @@ var categoryElement = document.getElementById('category');
 var versionElement = document.getElementById('version');
 var timerElement = document.getElementById('timer');
 var changesElement = document.getElementById('changes');
+var bossElement = document.getElementById('boss');
 var subtitleElement = document.getElementById('subtitle');
 
 var ROUND_LENGTH = 60;  // in seconds
+var MOODS = ['neutral', 'crossed', 'frown', 'point'];
 
 function speak(phrase) {
   subtitleElement.textContent = phrase;
@@ -42,6 +44,11 @@ function api(endpoint, params, callback) {
   xhr.addEventListener('load', callback);
   xhr.open('post', endpoint);
   xhr.send(formData);
+}
+
+function animateBoss() {
+  bossElement.setAttribute('data-mood', MOODS[Math.floor(Math.random() * MOODS.length)]);
+  setTimeout(animateBoss, 1000 + Math.random() * 2000);
 }
 
 function startRound() {
@@ -114,6 +121,8 @@ function chooseCategory(event) {
 
 function beginGatheringPlayers() {
   hideEverything();
+  animateBoss();
+
   hostnameElement.innerText = window.location.host;
   subtitleElement.style.setProperty('display', 'none');
   lobbyCtaElement.style.removeProperty('display');
