@@ -71,19 +71,27 @@ var VO = {
 function playAudioFrom(cat, callback) {
   var selected = VO[cat][Math.floor(Math.random() * VO[cat].length)];
   function doCallback() {
+    hideSubs();
     selected.audio.removeEventListener('ended', doCallback);
     if (callback) callback();
   }
+  showSubs(selected.transcript);
   selected.audio.addEventListener('ended', doCallback);
   selected.audio.play();
 }
 
-function speak(phrase) {
+function showSubs(phrase) {
   subtitleElement.textContent = phrase;
   subtitleElement.style.removeProperty('display');
-  meSpeak.speak(phrase, {}, function() {
-    subtitleElement.style.setProperty('display', 'none');
-  });
+}
+
+function hideSubs() {
+  subtitleElement.style.setProperty('display', 'none');
+}
+
+function speak(phrase) {
+  showSubs(phrase);
+  meSpeak.speak(phrase, {}, hideSubs);
 }
 
 function hideEverything() {
@@ -233,6 +241,24 @@ function beginGatheringPlayers() {
 
 }
 
+function annotateVoiceWithScript() {
+  var lines = this.responseText.split('\n');
+  var section;
+  var sectionIndex = 0;
+  for (var i = 0; i < lines.length; i++) {
+    if (lines[i]) {
+      if (lines[i][0] === '#') {
+        section = lines[i].slice(1);
+        sectionIndex = 0;
+      } else {
+        var part = VO[section][sectionIndex];
+        if (part) part.transcript = lines[i];
+        sectionIndex++;
+      }
+    }
+  }
+}
+
 function preloadVO() {
   for (var cat in VO) {
     for (var i = 0; i < VO[cat].length; i++) {
@@ -240,6 +266,11 @@ function preloadVO() {
       line.audio = new Audio('/static/voiceover/' + cat + line.n + '.mp3');
     }
   }
+
+  var scriptXhr = new XMLHttpRequest();
+  scriptXhr.addEventListener('load', annotateVoiceWithScript);
+  scriptXhr.open('get', '/static/voiceover/script.txt');
+  scriptXhr.send();
 }
 
 meSpeak.loadVoice('en/en');
