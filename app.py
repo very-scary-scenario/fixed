@@ -155,11 +155,31 @@ def _categories():
         if p['turns'] == fewest_turns
     ])
     save_state(session.get('hosting_lobby'), state)
+
+    turn_set = {p['turns'] for p in state['players'].values()}
+    if len(turn_set) == 1:
+        turn, = turn_set
+        if turn == 0:
+            message = None
+        else:
+            message = (
+                'Round complete! The scores are:\n\n{}'
+                .format('\n'.join((
+                    '{name}: {score}'.format(**p) for p in sorted(
+                        state['players'].values(),
+                        key=lambda pl: pl['score'], reverse=True
+                    )
+                )))
+            )
+    else:
+        message = None
+
     return jsonify({
         'categories': get_categories_shortlist(),
         'player': {
             'uuid': player_id, 'name': state['players'][player_id]['name'],
-        }
+        },
+        'message': message,
     })
 
 

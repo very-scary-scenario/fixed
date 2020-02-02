@@ -83,6 +83,7 @@ function startRound(event) {
     currentPlayerName = response.player.name;
     categoryChooserElement.innerText = currentPlayerName;
     favouriteChooserElement.innerText = currentPlayerName;
+    if (response.message) alert(response.message);
 
     for (var i = 0; i < categories.length; i++) {
       var categoryListItem = document.createElement('li');
