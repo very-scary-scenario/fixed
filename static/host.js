@@ -17,6 +17,10 @@ var timerElement = document.getElementById('timer');
 var changesElement = document.getElementById('changes');
 var bossElement = document.getElementById('boss');
 var subtitleElement = document.getElementById('subtitle');
+var showSessionCodeElement = document.getElementById('show-session-code');
+var hideSessionCodeElement = document.getElementById('hide-session-code');
+var sessionCodeElement = document.getElementById('session-code');
+var sessionCodePlaceholderElement = document.getElementById('session-code-placeholder');
 var robotHasBeenIntroduced = false;
 var roundHasBeenIntroduced = false;
 var currentPlayerUUID;
@@ -281,6 +285,22 @@ function preloadVO() {
   scriptXhr.addEventListener('load', annotateVoiceWithScript);
   scriptXhr.open('get', '/static/voiceover/script.txt');
   scriptXhr.send();
+}
+
+function showSessionCode() {
+  hideSessionCodeElement.style.removeProperty('display');
+  sessionCodeElement.style.setProperty('display', 'inline');
+
+  showSessionCodeElement.style.setProperty('display', 'none');
+  sessionCodePlaceholderElement.style.setProperty('display', 'none');
+}
+
+function hideSessionCode() {
+  showSessionCodeElement.style.removeProperty('display');
+  sessionCodePlaceholderElement.style.setProperty('display', 'inline');
+
+  hideSessionCodeElement.style.setProperty('display', 'none');
+  sessionCodeElement.style.setProperty('display', 'none');
 }
 
 meSpeak.loadVoice('en/en');
