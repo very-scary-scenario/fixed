@@ -226,10 +226,6 @@ function chooseCategory(event) {
               entryLink.setAttribute('href', '#');
               entryLink.addEventListener('click', startRound);
             }
-            var attributionElement = document.createElement('em');
-            attributionElement.appendChild(document.createTextNode('-' + entries[i].name));
-            entryLink.appendChild(document.createTextNode(' '));
-            entryLink.appendChild(attributionElement);
             entryElement.appendChild(entryLink);
             changesElement.appendChild(entryElement);
           }
