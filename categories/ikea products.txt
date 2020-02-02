@@ -22,3 +22,21 @@ KNALLA
 TJALLA
 >I'm telling on you. I'm getting you done.
 >Jag kommer skvallra.
+RASSLA
+>Rattle me bones!
+>Rassla mina ben!
+SKÅDIS
+>I'm going birdwatching.
+>Jag ska fågelskåda.
+GODMORGON
+>Wake up!
+>Vakna!
+VÅGSJÖN
+>I'm about to become seasick.
+>Jag är på väg att bli sjösjuk.
+FÖLJANDE
+>The following product is a kitchen fan.
+>Följande produkt är en köksfläkt.
+CITRONSYRA
+>This is apparently a common soda ingredient.
+>Denna är tydligen en vanlig ingrediens i läsk.
