@@ -72,7 +72,7 @@ function playAudioFrom(cat, callback) {
   var selected = VO[cat][Math.floor(Math.random() * VO[cat].length)];
   function doCallback() {
     selected.audio.removeEventListener('ended', doCallback);
-    callback();
+    if (callback) callback();
   }
   selected.audio.addEventListener('ended', doCallback);
   selected.audio.play();
