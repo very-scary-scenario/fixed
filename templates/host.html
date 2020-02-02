@@ -2,10 +2,19 @@
 {% block html_classes %}host{% endblock %}
 {% block content %}
   <section id="lobby">
-    <h1>session code: <code>{{ session_code }}</code></h1>
+    <h1>
+      session code:
+      <div id="session-code" style="display:none"><code>{{ session_code }}</code></div>
+      <div id="session-code-placeholder" style="display:inline"><code>????</code></div></h1>
     <p>join in at <span id="hostname"></span></p>
     <div id="lobby-cta">
       <p><a class="button" href="javascript:startRound();">Everyone is here! Go!</a></p>
+    </div>
+    <div id="hide-session-code" style="display:none">
+      <p><a class="button" href="javascript:hideSessionCode();">Hide session code</a></p>
+    </div>
+    <div id="show-session-code">
+      <p><a class="button" href="javascript:showSessionCode();">Show session code</a></p>
     </div>
   </section>
 
