@@ -17,11 +17,66 @@ var timerElement = document.getElementById('timer');
 var changesElement = document.getElementById('changes');
 var bossElement = document.getElementById('boss');
 var subtitleElement = document.getElementById('subtitle');
+var hasBeenIntroduced = false;
 var currentPlayerUUID;
 var currentPlayerName;
 
 var ROUND_LENGTH = 60;  // in seconds
 var MOODS = ['neutral', 'crossed', 'frown', 'point'];
+
+var VO = {
+  A: [
+    {n: '1'},
+    {n: '2'},
+    {n: '3'},
+    {n: '4'},
+    {n: '5'}],
+  B: [
+    {n: '1'},
+    {n: '2'},
+    {n: '3'},
+    {n: '4'},
+    {n: '5'}],
+  C: [
+    {n: '1'},
+    {n: '2'},
+    {n: '3'},
+    {n: '4'},
+    {n: '5'}],
+  D: [{n: ''}],
+  E: [
+    {n: '1'},
+    {n: '2'},
+    {n: '3'},
+    {n: '4'},
+    {n: '5'}],
+  F: [
+    {n: '1'},
+    {n: '2'},
+    {n: '3'},
+    {n: '4'},
+    {n: '5'},
+    {n: '6'},
+    {n: '7'},
+    {n: '8'},
+    {n: '9'},
+    {n: '10'}],
+  G: [
+    {n: '1'},
+    {n: '2'},
+    {n: '3'},
+    {n: '4'}],
+  firsttimehowtoplay: [{n: ''}]};
+
+function playAudioFrom(cat, callback) {
+  var selected = VO[cat][Math.floor(Math.random() * VO[cat].length)];
+  function doCallback() {
+    selected.audio.removeEventListener('ended', doCallback);
+    callback();
+  }
+  selected.audio.addEventListener('ended', doCallback);
+  selected.audio.play();
+}
 
 function speak(phrase) {
   subtitleElement.textContent = phrase;
@@ -57,6 +112,12 @@ function animateBoss() {
 }
 
 function startRound(event) {
+  playAudioFrom('A', function() {
+    playAudioFrom('B', function() {
+      playAudioFrom('C');
+    });
+  });
+
   var winnerUUID;
 
   if (event) {
@@ -112,8 +173,15 @@ function chooseCategory(event) {
     productElement.innerText = product.name;
     categoryElement.innerText = product.category;
     versionElement.innerText = product.version;
-    if (product.comment !== undefined) {
-      speak(product.name + ', version ' + product.version + '. ' + product.comment);
+    function doRobotSpeech() {
+      if (product.comment !== undefined) {
+        speak(product.name + ', version ' + product.version + '. ' + product.comment);
+      }
+    }
+    if (hasBeenIntroduced) playAudioFrom('F', doRobotSpeech);
+    else {
+      hasBeenIntroduced = true;
+      playAudioFrom('D', function() { playAudioFrom('E', doRobotSpeech); });
     }
 
     var countdown = ROUND_LENGTH;
@@ -162,7 +230,18 @@ function beginGatheringPlayers() {
   hostnameElement.innerText = window.location.host;
   subtitleElement.style.setProperty('display', 'none');
   lobbyCtaElement.style.removeProperty('display');
+
+}
+
+function preloadVO() {
+  for (var cat in VO) {
+    for (var i = 0; i < VO[cat].length; i++) {
+      var line = VO[cat][i];
+      line.audio = new Audio('/static/voiceover/' + cat + line.n + '.mp3');
+    }
+  }
 }
 
 meSpeak.loadVoice('en/en');
 beginGatheringPlayers();
+preloadVO();
