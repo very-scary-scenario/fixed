@@ -1,7 +1,7 @@
 :root {
   --root-bg: hsla(147, 33%, 12%, 1);
   --root-bg-faded: hsla(78, 33%, 27%, 1);
-  --root-hl: hsla(217, 60%, 47%, 1);
+  --root-hl: hsla(217, 60%, 55%, 1);
   --root-fg-faded: hsla(224, 39%, 86%, 1);
   --root-fg: hsla(240, 100%, 99%, 1);
 
@@ -56,7 +56,7 @@ body {
   max-width: 40em;
 }
 
-p {
+p, h1, h2, h3, h4, h5 {
   margin: .4em 0;
 }
 
