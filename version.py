@@ -46,6 +46,7 @@ OS_VERSIONS = {
     }
 }
 
+
 def random_datetime(p_not_time=0, p_not_day=0, p_not_month=0):
     '''Pick a random datetime and give it back in the form YYYYMMDDhhmmss.
     The time, day, and month can be omitted at random, with probability
@@ -82,11 +83,8 @@ def random_version():
 
     # Decide if this should be a dotted or a date version number
     if uniform(0, 1) < P_DATE:
-        has_date = True
         version = random_datetime(0.2, 0.2, 0.5)
     else:
-        has_date = False
-
         version_components = [
             int(gauss(1.2, 1) ** 2),
             int(gauss(2, 1) ** 2),
