@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 P_DATE = 0.1
 P_FOURTH_DIGIT = 0.05
 P_PRE_POST_RELEASE = 0.2
-PRE_POST_RELEASE_PREFIXES = ('a', 'alpha', 'b', 'beta', 'u', '.dev')
+PRE_POST_RELEASE_PREFIXES = ('a', 'alpha', 'b', 'beta', 'u', '.dev', 'rc1')
 P_OS_VERSION = 0.01
 OS_VERSIONS = {
     'win': {
