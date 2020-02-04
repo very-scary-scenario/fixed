@@ -2,4 +2,4 @@ On game start, play one file labelled A, then one labelled B, then one labelled 
 On first game start, play the intro instead of these.
 Then play D followed by one labelled E.
 Play one file labelled F at the start of each round.
-Play one file lablled G at the end of the game.
+Play one file labelled G at the end of the game.
