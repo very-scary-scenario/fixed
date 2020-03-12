@@ -12,6 +12,7 @@ from flask import (
     request,
     session,
 )
+from flask_cachebuster import CacheBuster
 
 from game import CATEGORIES, get_categories_shortlist
 from version import random_version
@@ -22,6 +23,8 @@ if not os.path.isdir(LOBBIES_DIR):
 
 app = Flask(__name__)
 app.secret_key = str(os.urandom(32))
+
+CacheBuster(config={'extensions': ['.js', '.css']}).init_app(app)
 
 
 def validate_lobby_code(code):
