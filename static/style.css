@@ -121,7 +121,9 @@ html.host section {
   color: black !important;
   background-clip: padding-box;
   color: var(--fg);
-  border-image: url('img/border_for_slicing.png') 14 36 5 5 / 14px 36px 5px 5px / 14px 5px 5px 5px repeat;
+  border-width: 14px 5px 5px 5px;
+  border-style: solid;
+  border-image: url('img/border_for_slicing.png') 14 36 5 5 / 14px 36px 5px 5px / 0 0 0 0 repeat;
 }
 
 html.host section#lobby {
