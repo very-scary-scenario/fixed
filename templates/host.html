@@ -4,17 +4,17 @@
   <section id="lobby">
     <h1>
       session code:
-      <div id="session-code" style="display:none"><code>{{ session_code }}</code></div>
-      <div id="session-code-placeholder" style="display:inline"><code>????</code></div></h1>
+      <code id="code-placeholder">????</code><code id="real-code">{{ session_code }}</code>
+    </h1>
+
+    <p>
+      <a id="hide-session-code" href="javascript:hideSessionCode();">Hide session code</a>
+      <a id="show-session-code" class="hidden" href="javascript:showSessionCode();">Show session code</a>
+    </p>
+
     <p>join in at <span id="hostname"></span></p>
     <div id="lobby-cta">
       <p><a class="button" href="javascript:startRound();">Everyone is here! Go!</a></p>
-    </div>
-    <div id="hide-session-code" style="display:none">
-      <p><a class="button" href="javascript:hideSessionCode();">Hide session code</a></p>
-    </div>
-    <div id="show-session-code">
-      <p><a class="button" href="javascript:showSessionCode();">Show session code</a></p>
     </div>
   </section>
 
