@@ -21,6 +21,8 @@ var showSessionCodeElement = document.getElementById('show-session-code');
 var hideSessionCodeElement = document.getElementById('hide-session-code');
 var sessionCodeElement = document.getElementById('real-code');
 var sessionCodePlaceholderElement = document.getElementById('code-placeholder');
+var everyoneIsHereElement = document.getElementById('everyone-is-here');
+var noneOfTheseElement = document.getElementById('none-of-these');
 var robotHasBeenIntroduced = false;
 var roundHasBeenIntroduced = false;
 var currentPlayerUUID;
@@ -28,6 +30,7 @@ var currentPlayerName;
 
 var ROUND_LENGTH = 60;  // in seconds
 var MOODS = ['neutral', 'crossed', 'frown', 'point'];
+var MESPEAK_VOICE = 'en/en';
 
 var VO = {
   A: [
@@ -105,7 +108,7 @@ function hideSubs() {
 
 function speak(phrase) {
   showSubs(phrase);
-  meSpeak.speak(phrase, {}, hideSubs);
+  meSpeak.speak(phrase, {voice: MESPEAK_VOICE}, hideSubs);
 }
 
 function hideEverything() {
@@ -255,6 +258,9 @@ function beginGatheringPlayers() {
 
   sessionCodePlaceholderElement.style.setProperty('display', 'none');
   showSessionCodeElement.style.setProperty('display', 'none');
+
+  everyoneIsHereElement.addEventListener('click', startRound);
+  noneOfTheseElement.addEventListener('click', startRound);
 }
 
 function annotateVoiceWithScript() {
@@ -287,6 +293,8 @@ function preloadVO() {
   scriptXhr.addEventListener('load', annotateVoiceWithScript);
   scriptXhr.open('get', '/static/voiceover/script.txt');
   scriptXhr.send();
+
+  meSpeak.loadVoice(MESPEAK_VOICE);
 }
 
 function showSessionCode(show) {
@@ -301,6 +309,5 @@ function hideSessionCode() {
   showSessionCode(true);
 }
 
-meSpeak.loadVoice('en/en');
 beginGatheringPlayers();
 preloadVO();
