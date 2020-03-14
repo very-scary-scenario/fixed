@@ -27,10 +27,11 @@ var robotHasBeenIntroduced = false;
 var roundHasBeenIntroduced = false;
 var currentPlayerUUID;
 var currentPlayerName;
+var analyser;
 
 var ROUND_LENGTH = 60;  // in seconds
 var MOODS = ['neutral', 'crossed', 'frown', 'point'];
-var MESPEAK_VOICE = 'en/en';
+var MESPEAK_VOICE = 'en/en-us';
 
 var VO = {
   A: [
@@ -108,6 +109,7 @@ function hideSubs() {
 
 function speak(phrase) {
   showSubs(phrase);
+  if (!analyser) analyser = meSpeak.getAudioAnalyser();
   meSpeak.speak(phrase, {voice: MESPEAK_VOICE}, hideSubs);
 }
 
@@ -141,6 +143,7 @@ function startRound(event) {
 
   if (event) {
     event.preventDefault();
+    meSpeak.speak('');
     winnerUUID = event.currentTarget.getAttribute('data-player');
   }
 
