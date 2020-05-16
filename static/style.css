@@ -123,7 +123,7 @@ html.host section {
   color: var(--fg);
   border-width: 14px 5px 5px 5px;
   border-style: solid;
-  border-image: url('img/border_for_slicing.png') 14 36 5 5 / 14px 36px 5px 5px / 0 0 0 0 repeat;
+  border-image: url('img/border_for_slicing.png') 15 36 6 6 / 15px 36px 6px 6px / 0 0 0 0 repeat;
 }
 
 html.host section#lobby {
