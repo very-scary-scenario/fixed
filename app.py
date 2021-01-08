@@ -139,8 +139,8 @@ def log_entry():
 def _categories():
     state = load_state(session.get('hosting_lobby'))
 
-    if not state['players']:
-        return 'Get some people to join the session first.', 400
+    if not len(state['players'].keys()) >= 2:
+        return 'Get at least two people to join the session first.', 400
 
     winner = request.form.get('winner')
     if winner and winner in state['players']:
